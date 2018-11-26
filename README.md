@@ -1,10 +1,10 @@
 # Single-Player Monte-Carlo Tree Search
 
-General-purpose Python implementation of a **single-player** variant of the **Monte-Carlo tree search** (MCTS) algorithm for deep reinforcement learning. The original two-player variant was introduced in the [AlphaZero paper](https://arxiv.org/pdf/1712.01815.pdf) by Silver et al.
+General-purpose Python implementation of a **single-player** variant of the **Monte-Carlo tree search** (MCTS) algorithm for deep reinforcement learning. The original two-player variant was introduced in the [AlphaZero paper](https://arxiv.org/abs/1712.01815) by Silver et al.
 
 The algorithm builds on the idea of iteratively improving a deep policy network and a tree search in tandem. The policy improves its estimates by planning ahead via the tree search. Conversely, the tree search makes use of the progressively more accurate policy to estimate the best branches to explore during the search.
 
-The original AlphaZero algorithm was developed for two-player games. We modified the algorithm to play single-player games. Our implementation was adapted from the [minigo](https://github.com/tensorflow/minigo) implementation.
+The original AlphaZero algorithm was developed for two-player games. We modified the algorithm to play single-player games. Our implementation was adapted from the [minigo](https://github.com/tensorflow/minigo) implementation, which is limited to the game of Go (two-player game).
 
 This repository provides an implementation of the MCTS algorithm that is independent of any deep learning framework. Furthermore, we provide a working example using PyTorch in which the agent learns to find the highest point on a map.
 
@@ -37,6 +37,6 @@ The implementation of the Monte-Carlo tree search algorithm in `mcts.py` was ada
 
 This repository was part of a Bachelor Thesis project by Felix Opolka supervised by Vladimir Golkov and Prof. Daniel Cremers. 
 
-## Cite
+## How to Cite
 
 Please cite [to be announced] if you use this code in your work.
