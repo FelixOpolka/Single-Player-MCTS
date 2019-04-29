@@ -60,7 +60,7 @@ class MCTSNode:
             self.depth = 0
             parent = DummyNode()
         else:
-            self.depth = parent.depth+1
+            self.depth = parent.depth + 1
         self.parent = parent
         self.action = action
         self.state = state
@@ -253,7 +253,7 @@ class MCTSNode:
         return probs / np.sum(probs)
 
     def print_tree(self, level=0):
-        node_string = "\033[94m|" + "----"*level
+        node_string = "\033[94m|" + "----" * level
         node_string += "Node: action={}\033[0m".format(self.action)
         node_string += "\n• state:\n{}".format(self.state)
         node_string += "\n• N={}".format(self.N)
@@ -262,7 +262,7 @@ class MCTSNode:
         node_string += "\n• P:\n{}".format(self.child_prior)
         print(node_string)
         for _, child in sorted(self.children.items()):
-            child.print_tree(level+1)
+            child.print_tree(level + 1)
 
 
 class MCTS:
@@ -289,7 +289,7 @@ class MCTS:
         self.seconds_per_move = seconds_per_move
         self.simulations_per_move = simulations_per_move
         self.num_parallel = num_parallel
-        self.temp_threshold = None        # Overwritten in initialize_search
+        self.temp_threshold = None  # Overwritten in initialize_search
 
         self.qs = []
         self.rewards = []
@@ -375,7 +375,7 @@ class MCTS:
         ob = self.TreeEnv.get_obs_for_states([self.root.state])
         self.obs.append(ob)
         self.searches_pi.append(
-            self.root.visits_as_probs()) # TODO: Use self.root.position.n < self.temp_threshold as argument
+            self.root.visits_as_probs())  # TODO: Use self.root.position.n < self.temp_threshold as argument
         self.qs.append(self.root.Q)
         reward = (self.TreeEnv.get_return(self.root.children[action].state,
                                           self.root.children[action].depth)
@@ -433,11 +433,12 @@ def execute_episode(agent_netw, num_simulations, TreeEnv):
 
     # Computes the returns at each step from the list of rewards obtained at
     # each step. The return is the sum of rewards obtained *after* the step.
-    ret = [TreeEnv.get_return(mcts.root.state, mcts.root.depth) for _
-           in range(len(mcts.rewards))]
+    # ret = [TreeEnv.get_return(mcts.root.state, mcts.root.depth) for _
+    #        in range(len(mcts.rewards))]
+
+    ret = [np.sum(mcts.rewards[i + 1:]) for i in range(len(mcts.rewards))]
 
     total_rew = np.sum(mcts.rewards)
 
     obs = np.concatenate(mcts.obs)
     return (obs, mcts.searches_pi, ret, total_rew, mcts.root.state)
-
