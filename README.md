@@ -8,8 +8,6 @@ The original AlphaZero algorithm was developed for two-player games. We modified
 
 This repository provides an implementation of the MCTS algorithm that is independent of any deep learning framework. Furthermore, we provide a working example using PyTorch in which the agent learns to find the highest point on a map.
 
-A fast C++ version will be coming soon!
-
 ![](HillClimbing.gif)
 
 
@@ -37,6 +35,3 @@ The implementation of the Monte-Carlo tree search algorithm in `mcts.py` was ada
 
 This repository was part of a Bachelor Thesis project by Felix Opolka supervised by Vladimir Golkov and Prof. Daniel Cremers. 
 
-## How to Cite
-
-Please cite [to be announced] if you use this code in your work.
