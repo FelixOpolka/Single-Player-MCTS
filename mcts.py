@@ -433,8 +433,9 @@ def execute_episode(agent_netw, num_simulations, TreeEnv):
 
     # Computes the returns at each step from the list of rewards obtained at
     # each step. The return is the sum of rewards obtained *after* the step.
-    ret = [TreeEnv.get_return(mcts.root.state, mcts.root.depth) for _
-           in range(len(mcts.rewards))]
+    # ret = [TreeEnv.get_return(mcts.root.state, mcts.root.depth) for _
+    #        in range(len(mcts.rewards))]
+    ret = [np.sum(mcts.rewards[i + 1:]) for i in range(len(mcts.rewards))]
 
     total_rew = np.sum(mcts.rewards)
 
